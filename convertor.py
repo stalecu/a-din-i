@@ -28,21 +28,25 @@ lista_prefixe = ["alt", "auto", "bine", "de", "ex", "foto", "ne",
 def converteste_a_in_i(cuvinte: list[str]) -> list[str]:
     for i, _ in enumerate(cuvinte):
         cuvinte[i] = cuvinte[i].replace("â", "î").replace("romîn", "român")
+        if cuvinte[i].startswith("sunt"):
+            cuvinte[i] = cuvinte[i].replace("sunt", "sînt")
     return cuvinte
 
 
 def converteste_i_in_a(cuvinte: list[str]) -> list[str]:
     # print(cuvinte)
     for i, _ in enumerate(cuvinte):
-        cuvinte[i] = cuvinte[i].replace("î", "â")
+        if cuvinte[i].startswith("sînt"):
+            cuvinte[i] = cuvinte[i].replace("sînt", "sunt")
+        else:
+            cuvinte[i] = cuvinte[i].replace("î", "â")
 
         masca = list(map(lambda w: cuvinte[i].startswith(
             w), lista_prefixe))
 
         if any(masca):
             prefix = lista_prefixe[masca.index(True)]
-            print(prefix, masca.index(True))
-            if cuvinte[i][len(prefix)] == "â":
+            if cuvinte[i][len(prefix)-1] == "â":
                 cuvinte[i] = cuvinte[i][: len(
                     prefix)] + "î" + cuvinte[i][len(prefix)+1:].replace("î", "â")
 
