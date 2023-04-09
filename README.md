@@ -1,19 +1,27 @@
 # a-din-i
 Convertor între scrierea cu î și scrierea cu â
 
-De ce l-am făcut? Pentru că de multe ori trebuie să convertesc între scrierea cu î din i pe care-o folosesc și scrierea cu â din a. Prin urmare, am făcut un mic script care să-mi ușureze munca. Codul e quick and dirty, am pus exact 0 efort în a-l face mai elegant, a se folosi ca atare.
+De ce l-am făcut? Pentru că de multe ori trebuie să convertesc între scrierea cu î din i pe care-o folosesc și scrierea cu â din a. Prin urmare, am făcut un mic script care să-mi ușureze munca.
 
-ATENȚIE: acest script modifică direct fișierul!
+Dependințe:
+- Perl, evident (minim 5.10, nu ne mai aflăm în 2005)
+- List::Util
+- Encode
+
+Toate acestea se pot instala folosind `cpan`. Verifică procedura pentru sistemul tău de operare (mai ales la Strawberry Perl pe Windows, pe restul este Perl standard dat de la mama natură).
+
+Se poate fie rula ca:
 ```
-usage: convertor.py [-h] [-a] [-i] fisier
-
-Convertor â <-> î
-
-positional arguments:
-  fisier         Fișierul care va fi convertit
-
-options:
-  -h, --help     show this help message and exit
-  -a, --a-din-i  Convertește din â în î (default: False)
-  -i, --i-din-a  Convertește din î în â (default: False)
+$ perl a-din-i.pl --in foo.txt --out bar.txt -i/-a
 ```
+fie:
+```
+$ chmod u+x a-din-i.pl
+$ ./a-din-i.pl --in foo.txt --out bar.txt -i/-a
+```
+(pe sisteme UNIX, nu știu cum e situația pe Windows, dar îmi imaginez că prima variantă este cross-platform).
+
+```
+Usage: a-din-i.pl --in FILE --out FILE -a/-i
+```
+unde `-a` sau `--i-din-a` reprezintă conversia de la â la î, iar `-i` sau `--i-din-i` reversul.

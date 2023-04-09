@@ -14,20 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-use 5.036;
+use 5.010;
 use warnings;
 use autodie;
 use utf8;
 use open qw( :std :encoding(UTF-8) );
-my $VERSION = 1.0;
 
 use Readonly;
-use Data::Dumper qw(Dumper);
 use Getopt::Long qw(GetOptions);
 Getopt::Long::Configure qw(gnu_getopt);
-use Carp;
-use English    qw(-no_match_vars);
-use List::Util qw(any first);
 use Encode;
 
 exit main(@ARGV);
@@ -145,7 +140,8 @@ sub main {
     }
 
     if ( $mode == 0 ) {
-        printf {*STDERR} "Mode has to be provided (either for î or for â!)\n";
+        printf {*STDERR}
+          "Mode has to be provided, either for î (-i) or for â (-a)!\n";
         return 1;
     }
 
